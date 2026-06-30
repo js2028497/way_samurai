@@ -1,0 +1,81 @@
+/* ═══════════════ PLASMA LIVE WALLPAPER ═══════════════ */
+
+#plasma-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: -1;
+}
+
+.plasma-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.plasma-overlay .hero-title {
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin: 0;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.08);
+  text-shadow:
+    0 0 40px rgba(76, 201, 240, 0.4),
+    0 0 80px rgba(114, 9, 183, 0.2),
+    0 0 140px rgba(72, 202, 228, 0.15);
+  transition: text-shadow 0.3s ease;
+  will-change: text-shadow;
+}
+
+.plasma-overlay .hero-sub {
+  font-size: clamp(0.9rem, 1.5vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 16px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+/* Dark gradient at bottom for content transition */
+.plasma-fade {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 30vh;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--bg-deep));
+}
+
+/* Adjust main content to sit below the fullscreen hero */
+.main-content {
+  position: relative;
+  z-index: 2;
+  margin-top: 100vh;
+}
+
+@media (max-width: 768px) {
+  .plasma-overlay .hero-title {
+    font-size: clamp(2.5rem, 15vw, 5rem);
+  }
+  .plasma-overlay .hero-sub {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+  }
+}
