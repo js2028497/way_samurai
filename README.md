@@ -47,7 +47,6 @@ docker compose run --rm web python manage.py createsuperuser
 
 <p align="center">
   <img src="https://github.com/js2028497/way_samurai/blob/main/way_samurai.png">
-  //<img src="https://github.com/js2028497/way_samurai/blob/dev/way_samurai.png">
 </p>
 
 
