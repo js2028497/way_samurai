@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{% if is_edit %}Edit{% else %}Write{% endif %} — Way Samurai{% endblock %}
+
+{% block content %}
+<div class="create-page">
+  <h1>{% if is_edit %}✎ Edit Article{% else %}✍ Write a new article{% endif %}</h1>
+
+  {% if error %}
+    <div class="form-error">{{ error }}</div>
+  {% endif %}
+
+  <form method="post" class="glass-card">
+    {% csrf_token %}
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" name="title" required placeholder="Article title" value="{{ article.title|default:'' }}">
+    </div>
+    <div class="form-group">
+      <label>Content</label>
+      <textarea name="content" required placeholder="Write your story..." style="width:100%; min-height: 320px; padding: 16px 18px; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 0.95rem; resize: vertical; outline: none; transition: border-color 0.3s;">{{ article.content|default:'' }}</textarea>
+    </div>
+    <div class="form-group">
+      <label>Category</label>
+      <select name="category_id">
+        <option value="">No category</option>
+        {% for cat in categories %}
+          <option value="{{ cat.id }}" {% if article.category_id == cat.id %}selected{% endif %}>{{ cat.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn-neon">
+      {% if is_edit %}Save Changes{% else %}Publish Article{% endif %}
+    </button>
+    <a href="{% url 'index' %}" class="btn-ghost" style="margin-left: 8px;">Cancel</a>
+  </form>
+</div>
+{% endblock %}

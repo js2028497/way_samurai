@@ -1,0 +1,29 @@
+INFO 2026-06-30 09:42:13,497 models User created: 'test'
+WARNING 2026-06-30 09:42:17,056 api Registration failed: username 'test' already exists
+INFO 2026-06-30 09:42:21,850 models User created: 'demo_user'
+INFO 2026-06-30 09:42:26,323 models User created: 'demo_user33'
+INFO 2026-06-30 09:42:53,289 models User created: 'demo'
+INFO 2026-06-30 09:42:53,297 models Token created for user 'demo'
+INFO 2026-06-30 09:42:53,298 api User registered: 'demo' (id=4)
+INFO 2026-06-30 09:42:54,413 api User 'demo' logged in
+INFO 2026-06-30 09:43:02,607 models User created: 'admin'
+INFO 2026-06-30 09:43:13,406 api User 'demo' logged in
+INFO 2026-06-30 09:43:13,522 models Article created: 'My First Post' by 'demo'
+INFO 2026-06-30 09:43:14,681 models Token created for user 'admin'
+INFO 2026-06-30 09:43:14,687 api User 'admin' logged in
+INFO 2026-06-30 09:43:14,800 models Category created: 'Tech'
+INFO 2026-06-30 09:47:24,223 models User 'admin' logged in from 192.168.65.1
+INFO 2026-06-30 09:47:24,226 models User updated: 'admin'
+INFO 2026-06-30 10:05:21,928 models User 'admin' logged out
+INFO 2026-06-30 10:06:39,658 models User created: 'user'
+INFO 2026-06-30 10:06:39,662 models Token created for user 'user'
+INFO 2026-06-30 10:06:39,666 models User 'user' logged in from 192.168.65.1
+INFO 2026-06-30 10:06:39,669 models User updated: 'user'
+INFO 2026-06-30 10:06:39,670 views User 'user' registered via web UI
+INFO 2026-06-30 10:06:53,047 models User 'admin' logged in from 192.168.65.1
+INFO 2026-06-30 10:06:53,051 models User updated: 'admin'
+INFO 2026-06-30 11:41:04,434 models User 'admin' logged out
+INFO 2026-06-30 11:41:23,782 models User 'user' logged in from 192.168.65.1
+INFO 2026-06-30 11:41:23,786 models User updated: 'user'
+INFO 2026-06-30 11:41:23,786 views User 'user' logged in via web UI
+INFO 2026-06-30 11:41:30,091 models User 'user' logged out

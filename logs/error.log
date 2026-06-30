@@ -1,0 +1,247 @@
+ERROR 2026-06-30 09:42:13,500 errors relation "users_token" does not exist
+LINE 1: INSERT INTO "users_token" ("user_id", "key", "created_at") V...
+                    ^
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "users_token" does not exist
+LINE 1: INSERT INTO "users_token" ("user_id", "key", "created_at") V...
+                    ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/ninja/operation.py", line 216, in run
+    result = self.view_func(request, **values)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/apps/users/api.py", line 52, in register
+    token = Token.objects.create(user=user, key=Token.generate_key())
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 660, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1810, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/usr/local/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "users_token" does not exist
+LINE 1: INSERT INTO "users_token" ("user_id", "key", "created_at") V...
+                    ^
+
+ERROR 2026-06-30 09:42:13,515 log Internal Server Error: /api/users/register/
+ERROR 2026-06-30 09:42:13,517 basehttp "POST /api/users/register/ HTTP/1.1" 500 3663
+ERROR 2026-06-30 09:42:21,856 errors relation "users_token" does not exist
+LINE 1: INSERT INTO "users_token" ("user_id", "key", "created_at") V...
+                    ^
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "users_token" does not exist
+LINE 1: INSERT INTO "users_token" ("user_id", "key", "created_at") V...
+                    ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/ninja/operation.py", line 216, in run
+    result = self.view_func(request, **values)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/apps/users/api.py", line 52, in register
+    token = Token.objects.create(user=user, key=Token.generate_key())
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 660, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1810, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/usr/local/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "users_token" does not exist
+LINE 1: INSERT INTO "users_token" ("user_id", "key", "created_at") V...
+                    ^
+
+ERROR 2026-06-30 09:42:21,865 log Internal Server Error: /api/users/register/
+ERROR 2026-06-30 09:42:21,866 basehttp "POST /api/users/register/ HTTP/1.1" 500 3663
+ERROR 2026-06-30 09:42:26,326 errors relation "users_token" does not exist
+LINE 1: INSERT INTO "users_token" ("user_id", "key", "created_at") V...
+                    ^
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "users_token" does not exist
+LINE 1: INSERT INTO "users_token" ("user_id", "key", "created_at") V...
+                    ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/ninja/operation.py", line 216, in run
+    result = self.view_func(request, **values)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/apps/users/api.py", line 52, in register
+    token = Token.objects.create(user=user, key=Token.generate_key())
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 660, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/query.py", line 1810, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/usr/local/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.11/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "users_token" does not exist
+LINE 1: INSERT INTO "users_token" ("user_id", "key", "created_at") V...
+                    ^
+
+ERROR 2026-06-30 09:42:26,336 log Internal Server Error: /api/users/register/
+ERROR 2026-06-30 09:42:26,339 basehttp "POST /api/users/register/ HTTP/1.1" 500 3663
+ERROR 2026-06-30 10:05:23,717 log Internal Server Error: /logout/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/apps/pages/views.py", line 63, in logout_view
+    logout(request)
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/__init__.py", line 157, in logout
+    user_logged_out.send(sender=user.__class__, request=request, user=user)
+  File "/usr/local/lib/python3.11/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+           ^
+  File "/usr/local/lib/python3.11/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/apps/users/models.py", line 35, in log_user_logout
+    logger.info(f"User '{user.username}' logged out")
+                         ^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'username'
+ERROR 2026-06-30 10:05:23,726 basehttp "GET /logout/ HTTP/1.1" 500 77246
+ERROR 2026-06-30 10:05:27,175 log Internal Server Error: /logout/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/apps/pages/views.py", line 63, in logout_view
+    logout(request)
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/__init__.py", line 157, in logout
+    user_logged_out.send(sender=user.__class__, request=request, user=user)
+  File "/usr/local/lib/python3.11/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+           ^
+  File "/usr/local/lib/python3.11/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/apps/users/models.py", line 35, in log_user_logout
+    logger.info(f"User '{user.username}' logged out")
+                         ^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'username'
+ERROR 2026-06-30 10:05:27,176 basehttp "GET /logout/ HTTP/1.1" 500 77383

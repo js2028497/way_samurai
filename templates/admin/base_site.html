@@ -1,0 +1,388 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Way Samurai Admin{% endblock %}
+
+{% block extrastyle %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg-deep: #0a1128;
+    --bg-mid: #0d1b2a;
+    --neon-blue: #4cc9f0;
+    --neon-purple: #7209b7;
+    --neon-teal: #48cae4;
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-muted: #8892a4;
+  }
+
+  html, body {
+    background: var(--bg-deep);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-secondary);
+  }
+
+  body {
+    background: linear-gradient(135deg, var(--bg-deep), var(--bg-mid), #1a1a3e);
+  }
+
+  #container {
+    background: transparent;
+  }
+
+  #header {
+    background: rgba(10, 17, 40, 0.55);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+    padding: 10px 30px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #header a:link, #header a:visited {
+    color: var(--neon-blue);
+  }
+
+  #branding h1 {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  #branding h1 a {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  #user-tools {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  #user-tools a {
+    color: var(--neon-blue) !important;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 4px 12px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+
+  #user-tools a:hover {
+    border-color: rgba(76, 201, 240, 0.3);
+    background: rgba(76, 201, 240, 0.06);
+  }
+
+  .module {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(18px) saturate(1.3);
+    -webkit-backdrop-filter: blur(18px) saturate(1.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .module h2, .module caption {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0 0 12px 0;
+    margin: 0 0 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  div.breadcrumbs {
+    background: rgba(10, 17, 40, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding: 12px 30px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  div.breadcrumbs a {
+    color: var(--neon-blue) !important;
+  }
+
+  #content {
+    padding: 30px;
+  }
+
+  #content h1 {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .module table {
+    background: transparent;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .module th, .module td {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+
+  .module thead th {
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    background: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  a:link, a:visited {
+    color: var(--neon-blue);
+  }
+
+  a:hover {
+    color: var(--neon-teal);
+  }
+
+  .button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-teal));
+    color: var(--bg-deep) !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .button:hover, input[type=submit]:hover, input[type=button]:hover, a.button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(76, 201, 240, 0.25);
+  }
+
+  .button.default, input[type=submit].default, .submit-row input.default {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-teal));
+  }
+
+  .deletelink {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+    color: white !important;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  input, textarea, select {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', sans-serif;
+    padding: 10px 14px !important;
+    backdrop-filter: blur(10px);
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: rgba(76, 201, 240, 0.3) !important;
+    box-shadow: 0 0 20px rgba(76, 201, 240, 0.06) !important;
+  }
+
+  .form-row {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .aligned label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .help, p.help, .timezonewarning {
+    color: var(--text-muted) !important;
+    font-size: 0.8rem;
+  }
+
+  .selector-chosen h2 {
+    background: transparent !important;
+    -webkit-text-fill-color: var(--text-primary) !important;
+    color: var(--text-primary) !important;
+  }
+
+  .paginator {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding: 12px 0;
+  }
+
+  .paginator a:link, .paginator a:visited {
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .calendar {
+    background: var(--bg-deep);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .calendar td, .calendar th {
+    color: var(--text-secondary);
+  }
+
+  .calendar .today a {
+    background: rgba(76, 201, 240, 0.1);
+    border-radius: 6px;
+  }
+
+  .field-box .field-row {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .inline-group {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(18px) saturate(1.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .inline-group h2 {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 12px 20px;
+    margin: 0;
+  }
+
+  .inline-related {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .inline-related h3 {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .submit-row {
+    background: transparent;
+    border: none;
+    padding: 12px 0;
+  }
+
+  .messagelist li {
+    background: rgba(76, 201, 240, 0.08);
+    border: 1px solid rgba(76, 201, 240, 0.2);
+    border-radius: 12px;
+    color: var(--text-primary);
+    padding: 12px 18px;
+    backdrop-filter: blur(10px);
+  }
+
+  .messagelist li.error {
+    background: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.2);
+  }
+
+  .messagelist li.warning {
+    background: rgba(234, 179, 8, 0.08);
+    border-color: rgba(234, 179, 8, 0.2);
+  }
+
+  .errornote {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 12px;
+    color: #ef4444;
+    padding: 12px 18px;
+  }
+
+  .errorlist {
+    color: #ef4444;
+  }
+
+  .quiet, a.quiet:link, a.quiet:visited {
+    color: var(--text-muted) !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(76, 201, 240, 0.2);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(76, 201, 240, 0.35);
+  }
+
+  /* Login page override */
+  .login #container {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    max-width: 400px;
+    margin: 10vh auto;
+    padding: 32px;
+  }
+
+  .login #header {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    padding: 0 0 20px 0 !important;
+    justify-content: center;
+  }
+
+  .login #content {
+    padding: 0;
+  }
+
+  .login .form-row {
+    border: none;
+    padding: 0;
+  }
+</style>
+{{ block.super }}
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">✦ Way Samurai</a></h1>
+{% endblock %}

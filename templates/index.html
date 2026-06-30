@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Way Samurai Blog{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'pages/css/plasma.css' %}">
+{% endblock %}
+
+{% block content %}
+<canvas id="plasma-canvas"></canvas>
+<div class="plasma-overlay">
+  <h1 class="hero-title">Way Samurai</h1>
+  <p class="hero-sub">Explore the unknown</p>
+</div>
+<div class="plasma-fade"></div>
+
+<div class="categories-bar">
+  <a href="{% url 'index' %}" class="category-pill {% if not request.GET.category %}active{% endif %}">All</a>
+  {% for cat in categories %}
+    <a href="?category={{ cat.id }}" class="category-pill {% if request.GET.category|stringformat:'s' == cat.id|stringformat:'s' %}active{% endif %}">{{ cat.name }}</a>
+  {% endfor %}
+</div>
+
+{% if articles %}
+  <div class="articles-grid">
+    {% for article in articles %}
+      <article class="glass-card article-card">
+        {% if article.category %}
+          <span class="card-category">{{ article.category.name }}</span>
+        {% endif %}
+        <h2 class="card-title"><a href="{% url 'article_detail' article.id %}">{{ article.title }}</a></h2>
+        <p class="card-excerpt">{{ article.content|truncatewords:30 }}</p>
+        <div class="card-meta">
+          <span class="author">{{ article.author.username }}</span>
+          <span class="card-meta-sep"></span>
+          <span>{{ article.created_at|date:"M d, Y" }}</span>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state">
+    <div class="empty-icon">✦</div>
+    <h3>No articles yet</h3>
+    <p>The path is unwritten. Be the first to share your wisdom.</p>
+    {% if user.is_authenticated %}
+      <a href="{% url 'create_article' %}" class="btn-neon">Write your first article</a>
+    {% else %}
+      <a href="{% url 'login' %}" class="btn-neon">Login to write</a>
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'pages/js/plasma.js' %}"></script>
+{% endblock %}

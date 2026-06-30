@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} — Way Samurai{% endblock %}
+
+{% block content %}
+<article class="article-detail">
+  <div class="article-header">
+    {% if article.category %}
+      <span class="article-category">{{ article.category.name }}</span>
+    {% endif %}
+    <h1>{{ article.title }}</h1>
+    <div class="article-meta">
+      <span class="author">{{ article.author.username }}</span>
+      <span>·</span>
+      <span>{{ article.created_at|date:"F d, Y" }}</span>
+      {% if article.updated_at != article.created_at %}
+        <span style="color: var(--text-muted);">· updated {{ article.updated_at|date:"M d, Y" }}</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="glass-card" style="margin-bottom: 24px;">
+    <div class="article-content">{{ article.content }}</div>
+  </div>
+
+  {% if user == article.author %}
+    <div class="article-actions">
+      <a href="{% url 'edit_article' article.id %}" class="btn-ghost">✏️ Edit</a>
+      <a href="{% url 'delete_article' article.id %}" class="btn-ghost btn-danger" onclick="return confirm('Delete this article?')">🗑 Delete</a>
+    </div>
+  {% endif %}
+
+  <section class="comments-section">
+    <h2>Comments <span style="color: var(--text-muted); font-weight: 400;">({{ comments|length }})</span></h2>
+
+    {% for comment in comments %}
+      <div class="comment-card">
+        <div class="comment-meta">
+          <span class="comment-author">{{ comment.author.username }}</span>
+          <span class="comment-date">{{ comment.created_at|date:"M d, Y H:i" }}</span>
+        </div>
+        <div class="comment-text">{{ comment.content }}</div>
+        {% if user == comment.author %}
+          <a href="{% url 'delete_comment' comment.id %}" class="comment-delete" onclick="return confirm('Delete this comment?')">Delete</a>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p style="color: var(--text-muted); margin-bottom: 24px;">No comments yet. Be the first to share your thoughts.</p>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'create_comment' article.id %}" class="comment-form">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Write a comment..." required></textarea>
+        <button type="submit" class="btn-neon" style="margin-top: 14px;">Post Comment</button>
+      </form>
+    {% else %}
+      <p style="color: var(--text-muted); margin-top: 24px;">
+        <a href="{% url 'login' %}" style="color: var(--neon-blue);">Login</a> to leave a comment.
+      </p>
+    {% endif %}
+  </section>
+</article>
+{% endblock %}
