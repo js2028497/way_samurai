@@ -45,6 +45,10 @@ http://localhost:8000/admin/          # Админ-панель Django
 Для админки сначала создай суперпользователя:
 docker compose run --rm web python manage.py createsuperuser
 
+<p align="center">
+  <img src="https://github.com/js2028497/way_samurai/blob/dev/way_samurai.png">
+</p>
+
 
 Главная: http://localhost:8000/ 
 Админка: http://localhost:8000/admin/ →  (login: admin / admin123)
